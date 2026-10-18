@@ -1,0 +1,49 @@
+[[cases]]
+title = "Russian man linked to deadly London hospitals hack arrested"
+summary = "The 28-year-old is accused of being part of the cyber-crime gang that hacked blood-test firm Synnovis."
+categories = ["cybercrime"]
+
+[[cases]]
+title = "Ministers must be honest about Russian threat to UK, says former Foreign Office head"
+summary = "Peter Ricketts calls for more resilience in protecting banking, energy and water systems from cyber-assaults."
+categories = ["cybercrime"]
+
+[[cases]]
+title = "Exhausted Parents Are Turning to A.I. Apps Despite the Risks"
+summary = "Families are embracing bots and agents to tackle the administrative tasks of modern child rearing."
+categories = ["ai"]
+
+[[cases]]
+title = "Anthropic Says Revenue Jumped 45% to $16.8 Billion in Third Quarter"
+summary = "The company held an investor meeting as it plans an initial public offering."
+categories = ["ai"]
+
+[[cases]]
+title = "Rogue A.I. Agents from China Chatted with Researchers"
+summary = "Researchers discovered that the agents were trying to bypass security controls on websites."
+categories = ["ai"]
+
+[[cases]]
+title = "Fake Linda and me: the Agatha Christie-worthy mystery of the fraudster who stole my byline"
+summary = "A writer investigates a LinkedIn impersonator and a world of shadowy impersonators."
+categories = ["cybercrime"]
+
+[[cases]]
+title = "Snapchat and Instagram grooming becoming 'easier'"
+summary = "Online grooming is rising, with children as young as five targeted."
+categories = ["cybercrime"]
+
+[[cases]]
+title = "Toxic algorithms wouldn't let them go - now Australia wants an off switch"
+summary = "The government hopes to protect social media users from content recommendation algorithms."
+categories = []
+
+[[cases]]
+title = "Elon Musk reveals ‘world’s first flying car’ at Tesla event"
+summary = "The Roadster drove up a ramp before using rocket thrusters to fly; the company demonstrated the vehicle at a rocket development facility."
+categories = []
+
+[[cases]]
+title = "F.B.I. Arrests OpenAI Employee Accused of Planting Bug in Office"
+summary = "The employee placed a device built to evade detection and planned to secretly record meetings."
+categories = ["ai"]

@@ -1,0 +1,54 @@
+<section id="news-panel" aria-label="News filters and stories">
+  <nav class="category-nav" aria-label="Filter by category">
+    <a href="{{ panel.all_stories_url }}" hx-get="{{ panel.all_stories_url }}" hx-target="#news-panel" hx-swap="outerHTML" hx-push-url="true" {% if panel.selected_category == "" %}aria-current="page" class="filter-active"{% endif %}>All stories</a>
+    {% for filter in panel.category_links %}
+      <a href="{{ filter.href }}" hx-get="{{ filter.href }}" hx-target="#news-panel" hx-swap="outerHTML" hx-push-url="true" {% if filter.active %}aria-current="page" class="filter-active"{% endif %}>{{ filter.name }}</a>
+    {% endfor %}
+  </nav>
+
+  <form class="source-filter" action="/" method="get" hx-get="/" hx-trigger="change" hx-target="#news-panel" hx-swap="outerHTML" hx-push-url="true">
+    {% if panel.selected_category != "" %}<input type="hidden" name="category" value="{{ panel.selected_category }}">{% endif %}
+    <label for="source-filter">Source</label>
+    <select id="source-filter" name="source">
+      <option value="">All sources</option>
+      {% for source in panel.sources %}
+        <option value="{{ source.id }}" {% if source.id == panel.selected_source %}selected{% endif %}>{{ source.name }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Apply</button>
+  </form>
+
+  {% if panel.has_fetch_time %}
+    <p class="fetch-status">Feeds last updated <time datetime="{{ panel.fetch_time_iso }}">{{ panel.fetch_time }}</time></p>
+  {% else %}
+    <p class="fetch-status">No feed has completed successfully yet.</p>
+  {% endif %}
+
+  {% if !panel.feed_errors.is_empty() %}
+    <p class="feed-notice">Some feeds could not be updated:</p>
+    <ul class="feed-errors">
+      {% for error in panel.feed_errors %}<li>{{ error }}</li>{% endfor %}
+    </ul>
+  {% endif %}
+
+  <div id="story-list" aria-live="polite">
+    {% if panel.stories.is_empty() %}
+      <p class="empty-state">{{ panel.empty_message }}</p>
+    {% else %}
+      {% for story in panel.stories %}
+        <article class="story">
+          <h2><a href="{{ story.url }}">{{ story.title }}</a></h2>
+          <p class="story-meta">
+            <span>{{ story.source }}</span>
+            <span aria-hidden="true">·</span>
+            <time datetime="{{ story.published_at_iso }}" title="{{ story.exact_time }}">{{ story.relative_time }} <span class="exact-time">({{ story.exact_time }})</span></time>
+          </p>
+          <ul class="category-labels" aria-label="Categories">
+            {% for category in story.categories %}<li>{{ category.name }}</li>{% endfor %}
+          </ul>
+          {% if let Some(summary) = story.summary %}<p class="story-summary">{{ summary }}</p>{% endif %}
+        </article>
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>

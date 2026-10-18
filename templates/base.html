@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/htmx.min.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to news</a>
+    <header class="site-header">
+      <a class="site-name" href="/">TechPulse</a>
+      <span class="site-description">Technology news, sorted by time</span>
+    </header>
+    <main id="main-content" class="page-content">
+      {% block content %}{% endblock %}
+    </main>
+    <footer class="site-footer">
+      <p>TechPulse stores story metadata and links to the original sources.</p>
+    </footer>
+  </body>
+</html>
