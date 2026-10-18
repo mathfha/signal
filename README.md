@@ -9,6 +9,13 @@ Signal fetches feeds when it starts and keeps the results in memory. A failed
 feed does not stop the others. The current version does not yet save stories
 to SQLite or refresh feeds on a schedule.
 
+## Project status
+
+Signal is still in development. Scheduled feed refresh, story normalization,
+duplicate detection, and persistent storage are not implemented yet. The
+[product requirements](docs/prd.md) and
+[implementation plan](docs/implementation-plan.md) track the remaining work.
+
 ## Run locally
 
 Install Rust, then start the app from the project directory:
