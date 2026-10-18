@@ -185,9 +185,14 @@ impl AppState {
 pub fn router(state: AppState) -> Router {
     Router::new()
         .route("/", get(index))
+        .route("/health", get(health))
         .route("/static/style.css", get(style))
         .route("/static/htmx.min.js", get(htmx))
         .with_state(state)
+}
+
+async fn health() -> StatusCode {
+    StatusCode::OK
 }
 
 pub async fn serve(state: AppState, address: &str) -> anyhow::Result<()> {
@@ -503,6 +508,21 @@ mod tests {
 
         assert!(html.contains("<!doctype html>"));
         assert!(html.contains("<header"));
+    }
+
+    #[tokio::test]
+    async fn health_endpoint_returns_success() {
+        let response = router(fixture_state())
+            .oneshot(
+                Request::builder()
+                    .uri("/health")
+                    .body(axum::body::Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+
+        assert_eq!(response.status(), axum::http::StatusCode::OK);
     }
 
     #[tokio::test]

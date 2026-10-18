@@ -44,5 +44,11 @@ cargo clippy --all-targets -- -D warnings
 | Technical decision (ADR) | [0001-sqlite-ssr.md](docs/0001-sqlite-ssr.md) | Accepted |
 | Clean code | [clean-code.md](docs/clean-code.md) | Draft |
 | Implementation plan | [implementation-plan.md](docs/implementation-plan.md) | Draft |
+| Deployment and operations | [deployment.md](docs/operations/deployment.md) | Current runtime limits documented |
 
-Add these documents later if needed: `docs/data/data-model.md`, `docs/operations/deployment.md`, and `docs/development/testing-strategy.md`.
+## Container deployment
+
+Build and start the app with `docker compose up --build --detach`. The
+container health check uses `GET /health`. See the
+[deployment guide](docs/operations/deployment.md) for operational details and
+the current SQLite backup limitation.

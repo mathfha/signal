@@ -1,0 +1,15 @@
+services:
+  techpulse:
+    build: .
+    init: true
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      TECHPULSE_ADDR: 0.0.0.0:3000
+      RUST_LOG: info
+    restart: unless-stopped
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL

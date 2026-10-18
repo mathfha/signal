@@ -27,7 +27,7 @@ A single Rust binary will run a scheduled fetcher and a web server over SQLite. 
 | `pipeline` | Normalize, deduplicate, and classify items using pure functions that are easy to test. |
 | `storage` | Provide the repository for storing and retrieving `Article` records. Keep all SQL here. |
 | `scheduler` | Run a tokio loop that fetches on an interval, handling each source independently. |
-| `web` | Define Axum routes: `/`, `/category/{slug}`, `/source/{slug}`, and `/health`; render pages and HTML fragments with Askama for HTMX interactions. |
+| `web` | Define Axum routes for the news index and `/health`; render pages and HTML fragments with Askama for HTMX interactions. |
 | `domain` | Define core types: `Article`, `Category`, and `SourceId`. Do not depend on external modules. |
 | `error` | Define application error types with `thiserror`. |
 
@@ -65,10 +65,13 @@ tests/
 - The home page sorts stories by publication time. Category and source filters
   use query parameters; full HTML is returned for normal requests and the
   `_story_list.html` fragment for requests carrying `HX-Request: true`.
+- `GET /health` returns HTTP 200 while the web process is running. It is a
+  liveness check and does not reflect individual feed failures.
 - HTMX is self-hosted at `/static/htmx.min.js`; styles are self-hosted at
   `/static/style.css`. Links and GET forms remain usable without JavaScript.
 - SQLite persistence and scheduled refresh are not wired into the current
-  binary yet.
+  binary yet. See [deployment and operations](operations/deployment.md) for
+  container deployment and the backup limitation.
 
 ## Initial data model
 ```text
